@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular-same-url';
+
+  constructor(private router: Router) { }
+
+  navigateToSameUrl() {
+    this.router.navigate(['hello'], { state: { carNo: Math.random() }, onSameUrlNavigation: 'reload' });
+  }
 }
